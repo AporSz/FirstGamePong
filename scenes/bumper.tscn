@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cp8kue1ee50fv"]
+
+[ext_resource type="Script" uid="uid://dl5t2papov74g" path="res://scripts/bumper.gd" id="1_63qnk"]
+[ext_resource type="Texture2D" uid="uid://n3dw0kuosgr2" path="res://assets/bumper.png" id="1_y1o0u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63qnk"]
+atlas = ExtResource("1_y1o0u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c24v7"]
+atlas = ExtResource("1_y1o0u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqsws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63qnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c24v7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gwgy"]
+size = Vector2(24, 3)
+
+[node name="Bumper" type="CharacterBody2D"]
+script = ExtResource("1_63qnk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_xqsws")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_5gwgy")
